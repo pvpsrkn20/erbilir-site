@@ -8,9 +8,17 @@ if (toggle && links) {
   });
 }
 
-const current = location.pathname.split("/").pop() || "index.html";
+const normalizePath = (value) => {
+  if (!value || value === "/" || value === "index.html") return "/";
+  return value
+    .replace(location.origin, "")
+    .replace(/^\//, "")
+    .replace(/\.html$/, "")
+    .replace(/\/$/, "");
+};
+const current = normalizePath(location.pathname);
 document.querySelectorAll(".nav-links a").forEach((item) => {
-  const href = item.getAttribute("href");
+  const href = normalizePath(item.getAttribute("href"));
   if (href === current) item.classList.add("active");
 });
 
