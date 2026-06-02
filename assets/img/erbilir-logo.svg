@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Erbilir Bilgi Islem</title>
+  <desc id="desc">EB harflerinden olusan kurumsal teknoloji amblemi</desc>
+  <defs>
+    <linearGradient id="g" x1="18" y1="18" x2="110" y2="110" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f766e"/>
+      <stop offset="1" stop-color="#1d4ed8"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="22" fill="#0b1220"/>
+  <rect x="14" y="14" width="100" height="100" rx="18" fill="url(#g)"/>
+  <path d="M34 32h48c13 0 22 8 22 20 0 8-4 14-11 17 9 3 15 10 15 21 0 14-10 24-26 24H34V32Zm21 18v18h24c7 0 11-3 11-9s-4-9-11-9H55Zm0 36v20h27c8 0 12-4 12-10s-4-10-12-10H55Z" fill="#fff"/>
+  <path d="M28 32h22v82H28V32Z" fill="#e8f7f5"/>
+  <path d="M89 92l16 16 16-16" fill="none" stroke="#e8f7f5" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

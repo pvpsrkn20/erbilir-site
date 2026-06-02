@@ -71,8 +71,26 @@ img { display: block; max-width: 100%; }
   place-items: center;
   color: #fff;
   border-radius: 8px;
-  background: linear-gradient(135deg, var(--brand), var(--blue));
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.18), transparent 46%),
+    linear-gradient(135deg, var(--brand), var(--blue));
   font-weight: 900;
+  letter-spacing: .03em;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.22), 0 12px 26px rgba(15, 118, 110, .22);
+}
+.brand-mark::after {
+  content: "";
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid rgba(255,255,255,.78);
+  border-left: 0;
+  border-top: 0;
+  transform: rotate(-45deg);
 }
 .brand small {
   display: block;
@@ -197,6 +215,12 @@ h1, h2, h3 { line-height: 1.08; margin: 0; letter-spacing: 0; }
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
 }
+.visual-grid,
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
 .card {
   background: #fff;
   border: 1px solid var(--line);
@@ -216,6 +240,80 @@ h1, h2, h3 { line-height: 1.08; margin: 0; letter-spacing: 0; }
   color: var(--brand-dark);
   font-weight: 900;
   margin-bottom: 20px;
+}
+.solution-card,
+.project-card {
+  min-height: 250px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(17, 24, 39, .05);
+  padding: 24px;
+}
+.solution-card.featured,
+.project-card.wide {
+  grid-column: span 2;
+  padding: 0;
+  display: grid;
+  grid-template-columns: .95fr 1.05fr;
+  align-items: stretch;
+  background: #0b1220;
+  color: #fff;
+}
+.solution-card img,
+.project-card img {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  object-fit: cover;
+}
+.solution-card.featured > div,
+.project-card.wide > div {
+  padding: 28px;
+  align-self: center;
+}
+.solution-card h3,
+.project-card h3 {
+  font-size: 24px;
+  margin: 10px 0;
+}
+.solution-card p,
+.project-card p {
+  color: var(--muted);
+  margin: 0;
+}
+.solution-card.featured p,
+.project-card.wide p {
+  color: #dbeafe;
+}
+.solution-card.featured .tag {
+  background: rgba(255,255,255,.1);
+  border-color: rgba(255,255,255,.18);
+  color: #e0f2fe;
+}
+.solution-kicker,
+.project-type {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: #e8f7f5;
+  color: var(--brand-dark);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.solution-card.featured .solution-kicker,
+.project-card.wide .solution-kicker {
+  background: rgba(158, 228, 220, .15);
+  color: #9ee4dc;
+}
+.project-type {
+  background: #eef2ff;
+  color: #1e3a8a;
 }
 .split {
   display: grid;
@@ -336,6 +434,115 @@ h1, h2, h3 { line-height: 1.08; margin: 0; letter-spacing: 0; }
 }
 .form textarea { min-height: 150px; resize: vertical; }
 
+.support-widget {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 80;
+  font: inherit;
+}
+.support-toggle {
+  min-height: 56px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 18px 0 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #0f766e;
+  color: #fff;
+  font-weight: 900;
+  box-shadow: 0 18px 42px rgba(15, 118, 110, .34);
+  cursor: pointer;
+}
+.support-toggle-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,.18);
+  font-size: 20px;
+  line-height: 1;
+}
+.support-panel {
+  position: absolute;
+  right: 0;
+  bottom: 72px;
+  width: min(360px, calc(100vw - 32px));
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transform: translateY(12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+}
+.support-widget.open .support-panel {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.support-head {
+  padding: 18px;
+  background: #0b1220;
+  color: #fff;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.support-head strong { display: block; font-size: 17px; line-height: 1.2; }
+.support-head span { color: #cbd5e1; font-size: 13px; }
+.support-close {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 8px;
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+.support-form {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+}
+.support-form input,
+.support-form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  min-height: 44px;
+  padding: 10px 12px;
+  font: inherit;
+}
+.support-form textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+.support-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.support-actions .btn {
+  width: 100%;
+  min-height: 42px;
+  padding: 0 12px;
+  font-size: 14px;
+}
+.support-meta {
+  padding: 0 16px 16px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
 @media (max-width: 920px) {
   .topbar-inner { align-items: flex-start; padding: 10px 0; flex-direction: column; }
   .menu-toggle { display: inline-grid; place-items: center; }
@@ -354,8 +561,18 @@ h1, h2, h3 { line-height: 1.08; margin: 0; letter-spacing: 0; }
   .nav-links.open { display: flex; }
   .nav-links a { padding: 13px 14px; }
   .nav-cta { display: none; }
-  .hero-metrics, .grid, .split, .contact-grid, .footer-grid, .cta .container {
+  .hero-metrics, .grid, .visual-grid, .project-grid, .split, .contact-grid, .footer-grid, .cta .container {
     grid-template-columns: 1fr;
+  }
+  .solution-card.featured,
+  .project-card.wide {
+    grid-column: auto;
+    grid-template-columns: 1fr;
+  }
+  .solution-card img,
+  .project-card img {
+    min-height: 220px;
+    aspect-ratio: 16 / 10;
   }
   .cta .container { display: grid; }
   .section-head { display: block; }
@@ -372,4 +589,16 @@ h1, h2, h3 { line-height: 1.08; margin: 0; letter-spacing: 0; }
   .metric { padding: 18px; }
   .section { padding: 62px 0; }
   .card, .panel { padding: 22px; }
+  .support-widget {
+    right: 14px;
+    bottom: 14px;
+  }
+  .support-toggle {
+    min-height: 52px;
+    padding-right: 14px;
+  }
+  .support-toggle-text { display: none; }
+  .support-panel {
+    bottom: 66px;
+  }
 }
