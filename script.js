@@ -319,6 +319,8 @@ if (form) {
 }
 
 const supportEmail = "info@erbilir.com";
+const supportPhone = "905000000000";
+const whatsappText = encodeURIComponent("Merhaba, Erbilir Bilgi İşlem hizmetleri hakkında bilgi almak istiyorum.");
 const supportWidget = document.createElement("div");
 supportWidget.className = "support-widget";
 supportWidget.innerHTML = `
@@ -345,6 +347,7 @@ supportWidget.innerHTML = `
     <span class="support-toggle-icon" aria-hidden="true">?</span>
     <span class="support-toggle-text">Canlı destek</span>
   </button>
+  <a class="whatsapp-toggle" href="https://wa.me/${supportPhone}?text=${whatsappText}" target="_blank" rel="noopener" aria-label="WhatsApp ile iletişime geç">WA</a>
 `;
 document.body.appendChild(supportWidget);
 translatePage(localStorage.getItem("erbilir-language") || "tr");
